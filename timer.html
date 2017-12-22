@@ -23,7 +23,9 @@
 					var arr=dou(oDate.getHours())+dou(oDate.getMinutes())+dou(oDate.getSeconds());
 					for (var i=0; i<arr.length; i++) {
 						//将系统时间的数组和img标签结合
-						aImg[i].src='img/'+arr[i]+'.png';
+						//arr[i]的表示方法可能会不兼容，可以改为arr.charAt()
+						//aImg[i].src='img/'+arr[i]+'.png';
+						aImg[i].src='img/'+arr.charAt(i)+'.png';
 					}
 				}
 				
