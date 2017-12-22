@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title>timer</title>
+		<script type="text/javascript">
+			window.onload=function  () {
+				var aImg=document.getElementsByTagName('img');
+				
+				//用于将一位数的时间转换成二位数
+				function dou (i) {
+					if (i<10) {
+						return '0'+i;
+					} else{
+						return ''+i;
+					}
+				}
+				
+				function get () {
+					//创建日期对象
+					var oDate=new Date();
+					//获取系统时间：getHours()、getMinutes()、getSeconds()
+					var arr=dou(oDate.getHours())+dou(oDate.getMinutes())+dou(oDate.getSeconds());
+					for (var i=0; i<arr.length; i++) {
+						//将系统时间的数组和img标签结合
+						aImg[i].src='img/'+arr[i]+'.png';
+					}
+				}
+				
+				get();
+				var timer=null;
+				timer=setInterval(get, 1000);
+				
+				var oBtn1=document.getElementById('btn1');
+				var oBtn2=document.getElementById('btn2');
+				
+				oBtn1.onclick=function  () {
+					timer=setInterval(get, 1000);
+				}
+				oBtn2.onclick=function  () {
+					clearInterval(timer);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="mian" style="width: 300px; height: 80px; background: black; color: white; font-size: 50px; margin: auto;">
+			<img src=""/>
+			<img src=""/>
+			:
+			<img src=""/>
+			<img src=""/>
+			:
+			<img src=""/>
+			<img src=""/>
+		</div>
+		<div id="ot" style="width: 300px; height: 50px; background: grey; margin: auto;">
+			<input type="button" id="btn1" value="open" />
+			<input type="button" id="btn2" value="stop" />
+		</div>
+	</body>
+</html>
