@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算器</title>
+	</head>
+	<style type="text/css">
+		#main1 {
+			width: 330px;
+			height: 500px;
+			background: gray;
+			margin: auto;
+			margin-top: 50px;
+		}
+		#show {
+			width: 250px;
+			height: 50px;
+			margin: 20px 10px;
+			font-size: 20px;
+		}
+		.btn1 {
+			width: 60px;
+			height: 80px;
+			float: left;
+			margin: 10px;
+			background: papayawhip;
+			font-size: 40px;
+		}
+		.btn2 {
+			width: 60px;
+			height: 80px;
+			float: left;
+			margin: 10px;
+			background: papayawhip;
+			font-size: 40px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function  () {
+			var oMain=document.getElementById('main1');
+			var oShow=document.getElementById('show');
+			var oClear=document.getElementById('clear');
+			var aBtn1=oMain.getElementsByClassName('btn1');
+			var aBtn2=oMain.getElementsByClassName('btn2');
+			var target=0;
+			var num1=null;
+			var num2=null;
+			
+			oClear.onclick=function () {
+				oShow.value='';
+				target=0;
+			}
+			
+			for (var i=0; i<aBtn1.length; i++) {
+				aBtn1[i].onclick=function () {
+					if (target==0) {
+						oShow.value='';
+						oShow.value+=this.innerHTML;
+						target=-1;
+					} else {
+						oShow.value+=this.innerHTML;
+					}
+				}
+			}
+			for (var i=0; i<aBtn2.length; i++) {
+				aBtn2[i].index=i;
+				aBtn2[i].onclick=function () {
+					switch (this.index){
+						case 0:
+						num1=parseFloat(oShow.value);
+						oShow.value='';
+						target=1;
+							break;
+						case 1:
+						num1=parseFloat(oShow.value);
+						oShow.value='';
+						target=2;
+							break;
+						case 2:
+						num1=parseFloat(oShow.value);
+						oShow.value='';
+						target=3;
+							break;
+						case 3:
+						oShow.value+='0';
+						if (target==0) {
+							target=-1;
+						}
+							break;
+						case 4:
+						oShow.value+='.';
+						if (target==0) {
+							target=-1;
+						}
+							break;
+						case 5:
+						num2=parseFloat(oShow.value);
+						if (target==1) {
+							oShow.value=num1/num2;
+							target=0;
+						} else if (target==2) {
+							oShow.value=num1*num2;
+							target=0;
+						} else if (target==3) {
+							oShow.value=num1-num2;
+							target=0;
+						} else if (target==4) {
+							oShow.value=num1+num2;
+							target=0;
+						} else {
+							alert('BUG');
+						}
+							break;
+						case 6:
+						num1=parseFloat(oShow.value);
+						oShow.value='';
+						target=4;
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		}		
+	</script>
+	<body>
+		<div id="main1">
+			<input type="text" id="show" value="" />
+			<input type="button" id="clear" value="清除" style="background: papayawhip;font-weight: bold;"/>
+			<div class="btn1">1</div>
+			<div class="btn1">2</div>
+			<div class="btn1">3</div>
+			<div class="btn2">/</div>
+			<div class="btn1">4</div>
+			<div class="btn1">5</div>
+			<div class="btn1">6</div>
+			<div class="btn2">*</div>
+			<div class="btn1">7</div>
+			<div class="btn1">8</div>
+			<div class="btn1">9</div>
+			<div class="btn2">-</div>
+			<div class="btn2">0</div>
+			<div class="btn2">.</div>
+			<div class="btn2">=</div>
+			<div class="btn2">+</div>
+		</div>
+	</body>
+</html>
